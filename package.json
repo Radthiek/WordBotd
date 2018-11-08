@@ -1,9 +1,10 @@
 {
-  "name": "myapp",
-  "description": "a really cool app",
+  "name": "luxurybot",
+  "description": "A discord bot for didney worl who has an appetite for non-nutritive substances",
   "version": "1.0.0",
-  "engines": {
-    "node": "10.3.0"
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
   },
   "dependencies": {
     "better-sqlite3": "^5.0.1",
