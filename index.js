@@ -1,7 +1,7 @@
 const botconfig = require("./botconfig.json");
 const Discord = require("discord.js");
 const fs = require("fs");
-const bot = new Discord.bot({disableEveryone: true});
+const bot = new Discord.Client({disableEveryone: true});
 var Jimp = require("jimp");
 const SQLite = require("better-sqlite3");
 const sql = new SQLite('./profile.sqlite');
@@ -43,7 +43,7 @@ fs.readdir("./others/", (err, files) => {
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
-bot.user.setActivity("| Word System", {type: "WATCHING"});
+  bot.user.setActivity("Mubox.cf Network - " + botconfig.prefix + "مساعدة", {type: "WATCHING"});
   const profile = sql.prepare("SELECT count(*) FROM sqlite_master WHERE type='table' AND name = 'profile';").get();
   if (!profile['count(*)']) {
     // If the table isn't there, create it and setup the database correctly.
@@ -156,38 +156,4 @@ let about = sql.prepare(`SELECT * FROM about WHERE UserID = '${message.author.id
 
 });
 
-
-
-      bot.on('guildMemberAdd', member => {
-        var embed = new Discord.RichEmbed()
-        .setAuthor(member.user.username, member.user.avatarURL)
-        .setThumbnail(member.user.avatarURL)
-        .setTitle(`يا هلا بك :raised_hand::skin-tone-1: :smiley:`)
-        .setDescription(`اهلاً بك في سيرفرنا :blush:`)
-        .addField(' :bust_in_silhouette:  انت رقم',`**[ ${member.guild.memberCount} ]**`,true)
-        .setColor('GREEN')
-        .setFooter('======= Welcome To WordShop=======')
-
-    var channel =member.guild.channels.find('name', 'word')
-    if (!channel) return;
-    channel.send({embed : embed});
-    });
-	
-
-bot.on('message', message => {
-    var args = message.content.split(/[ ]+/)
-    if(message.content.includes('discord.gg')){
-      if(!message.member.hasPermission('ADMINISTRATOR'))
-        message.delete()
-    return message.reply(`** No Invite Links :angry: ! **`)
-    }
-});
-
-  bot.on("guildMemberAdd", member => {
-  member.createDM().then(function (channel) {
-  return channel.send(`**Hi ! ** ${member} **Welcome To WordShop !** `) 
-}).catch(console.error)
-})
-
-
-bot.login('NTEwMTQ5NDIyODE5MTgwNTQ3.DsYJmw.4AuxGVLtPp6JtOvjl37BgNJoerk');
+bot.login("NTA2Nzc3MzczODQ5NjgxOTIx.Drnlsg.BW6f7As6tYyLZoVBMWNDvsaSQ_w");
